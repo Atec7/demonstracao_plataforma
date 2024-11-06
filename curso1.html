@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso 1: Introdução</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color:white;
+            background-color: #123;
+        }
+        .header {
+            background-color: #123;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .video {
+            margin-bottom: 20px;
+        }
+        .footer {
+            background-color: #123;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        /* Regras para telas menores */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .header, .footer {
+                padding: 0.5em;
+            }
+        }
+        @media (max-width: 480px) {
+            .header, .footer {
+                font-size: 14px;
+            }
+            .video video {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Curso 1: XXXXXXXXXX </h1>
+    </div>
+
+    <div class="container">
+        <div class="video">
+            <h3>Vídeo de Treinamento</h3>
+           <iframe width="100%" height="40%" src="https://www.youtube.com/embed/aS-ZDEQTK5M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="content">
+            <h2>Conteúdo do Curso</h2>
+            <p>Este curso cobre os fundamentos...</p>
+            <!-- Detalhes adicionais do curso podem ser adicionados aqui -->
+        </div>
+    
+        <div class="certificate">
+            <h3>Avaliação</h3>
+            <button>
+              <p><a class="solicitar" href="questionario.html">Realizar
+            Questionário</a></p>
+            </button>
+            
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Plataforma de Treinamento. Todos os direitos reservados.</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #123;
+        }
+        .login-container {
+            background-color: #123;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: green;
+            color: black;
+        }
+        
+        h2{
+          color: white;
+        }
+        .footer {
+            background-color: #1234;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .error {
+            color: red;
+            display: none;
+        }
+        
+                /* Regras para telas menores */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .header, .footer {
+                padding: 0.5em;
+            }
+        }
+        @media (max-width: 480px) {
+            .header, .footer {
+                font-size: 14px;
+            }
+            .video video {
+                width: 100%;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Usuário">
+        <input type="password" id="password" placeholder="Senha">
+        <button onclick="login()">Entrar</button>
+        <p class="error" id="error">Usuário ou senha incorretos.</p>
+    </div>
+
+<div class="footer">
+        <p>&copy; 2024 Plataforma de Treinamento. Todos os direitos reservados.</p>
+    </div>
+    
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('error');
+
+            if (username === 'T' && password === 't') {
+                alert('Login bem-sucedido!');
+                window.location.href = 'cursos.html'; // redireciona para a página principal
+            } else {
+                error.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>

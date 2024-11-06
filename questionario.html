@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #123;
+        }
+        .questionnaire-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            margin: 0;
+        }
+        .question input {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+        #certificate-link {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .form-container {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="questionnaire-container">
+        <h2>Avaliação Obrigatória</h2>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. Qual é a capital do Brasil?</p>
+                <input type="radio" name="q1" value="A"> A) São Paulo<br>
+                <input type="radio" name="q1" value="B"> B) Brasília<br>
+                <input type="radio" name="q1" value="C"> C) Rio de Janeiro<br>
+                <input type="radio" name="q1" value="D"> D) Salvador<br>
+            </div>
+            <div class="question">
+                <p>2. Qual é o maior país da América do Sul?</p>
+                <input type="radio" name="q2" value="A"> A) Argentina<br>
+                <input type="radio" name="q2" value="B"> B) Brasil<br>
+                <input type="radio" name="q2" value="C"> C) Colômbia<br>
+                <input type="radio" name="q2" value="D"> D) Venezuela<br>
+            </div>
+            <div class="question">
+                <p>3. Qual é o rio mais extenso do mundo?</p>
+                <input type="radio" name="q3" value="A"> A) Nilo<br>
+                <input type="radio" name="q3" value="B"> B) Amazonas<br>
+                <input type="radio" name="q3" value="C"> C) Yangtzé<br>
+                <input type="radio" name="q3" value="D"> D) Mississipi<br>
+            </div>
+            <div class="question">
+                <p>4. Qual é a montanha mais alta do mundo?</p>
+                <input type="radio" name="q4" value="A"> A) Monte Everest<br>
+                <input type="radio" name="q4" value="B"> B) K2<br>
+                <input type="radio" name="q4" value="C"> C) Kangchenjunga<br>
+                <input type="radio" name="q4" value="D"> D) Lhotse<br>
+            </div>
+            <div class="question">
+                <p>5. Qual é o menor país do mundo?</p>
+                <input type="radio" name="q5" value="A"> A) Vaticano<br>
+                <input type="radio" name="q5" value="B"> B) Mônaco<br>
+                <input type="radio" name="q5" value="C"> C) Nauru<br>
+                <input type="radio" name="q5" value="D"> D) Tuvalu<br>
+            </div>
+            <div class="question">
+                <p>6. Qual é o oceano mais profundo?</p>
+                <input type="radio" name="q6" value="A"> A) Atlântico<br>
+                <input type="radio" name="q6" value="B"> B) Índico<br>
+                <input type="radio" name="q6" value="C"> C) Ártico<br>
+                <input type="radio" name="q6" value="D"> D) Pacífico<br>
+            </div>
+            <button type="button" class="submit-button" onclick="checkAnswers()">Enviar Respostas</button>
+        </form>
+        <div id="certificate-link">
+            <p>Parabéns! Você atingiu 60% ou mais de aproveitamento.</p>
+            <button class="submit-button" onclick="showForm()">Solicitar Certificado</button>
+        </div>
+        <div class="form-container" id="form-container">
+            <h3>Preencha os dados para solicitar o certificado</h3>
+            <form id="certForm">
+                <div class="question">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="course">Curso:</label>
+                    <input type="text" id="course" required>
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Empresa:</label>
+                    <input type="text" id="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="score">Nota:</label>
+                    <input type="text" id="score" readonly>
+                </div>
+                <button type="button" class="submit-button" onclick="sendWhatsApp()">Enviar para WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            var answers = {
+                q1: 'B',
+                q2: 'B',
+                q3: 'B',
+                q4: 'B',
+                q5: 'B',
+                q6: 'B'
+            };
+            
+            var form = document.getElementById('quizForm');
+            var score = 0;
+            var totalQuestions = 6;
+            
+            for (var question in answers) {
+                var radios = form.elements[question];
+                for (var i = 0; i < radios.length; i++) {
+                    if (radios[i].checked && radios[i].value === answers[question]) {
+                        score++;
+                    }
+                }
+            }
+            
+            var percentage = (score / totalQuestions) * 100;
+            
+            if (percentage >= 60) {
+                document.getElementById('certificate-link').style.display = 'block';
+                document.getElementById('score').value = percentage + '%';
+            } else {
+                alert('Você não atingiu a porcentagem mínima. Tente novamente.');
+            }
+        }
+
+        function showForm() {
+            document.getElementById('form-container').style.display = 'block';
+        }
+
+        function sendWhatsApp() {
+            var name = document.getElementById('name').value;
+            var course = document.getElementById('course').value;
+            var cpf = document.getElementById('cpf').value;
+            var company = document.getElementById('company').value;
+            var score = document.getElementById('score').value;
+            
+            if (name && course && cpf && company && score) {
+                var message = `Nome: ${name}\nCurso: ${course}\nCPF: ${cpf}\nEmpresa: ${company}\nNota: ${score}`;
+                var url = `https://api.whatsapp.com/send?phone=5564992952748&text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        }
+    </script>
+
+</body>
+</html>
